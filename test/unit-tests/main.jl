@@ -1,9 +1,17 @@
-import TrustRegionTests
 include("model.jl")
 
 dims = [1, 3, 5, 10, 15]
 models = [TMPModel(i) for i in dims]
 sols = [mo.A\(-0.5*mo.b) for mo in models]
+
+### Test sets
+@testset "trigonometric identities" begin
+    θ = 2/3*π
+    @test sin(-θ) ≈ -sin(θ)
+    @test cos(-θ) ≈ cos(θ)
+    @test sin(2θ) ≈ 2*sin(θ)*cos(θ)
+    @test cos(2θ) ≈ cos(θ)^2 - sin(θ)^2
+end;
 
 #=
 btr = Charlotte.BasicTrustRegion{Charlotte.HessianMatrix}()

@@ -1,58 +1,50 @@
 module TrustRegionTests
 
-    export greet, domath, bar, foo, add_exported
-    
-    """Greetings!"""
-    greet() = print("Hello World of Trust-Region Tests!")
+    using LinearAlgebra, Random, NLPModels, QuadraticModels, Test
+
+    export greet, geometricMean
 
     """
     greet(s::String)
     
-    Returns Hello World name `s`.""" 
-    greet(s::String) = print("Hello World " * s * " !!")
-
-    """
-    domath(x::Real)
-
-    Returns double the number `x` plus `1`.
-    """
-    domath(x::Real) = 2*x + 1.0
-
-    """A foo function.
-
     # Arguments
-    - `arg::Int`: Function argument.
-    """
-    function foo(arg::Int)
-        return length(x)^2
-    end
+    - `s::String`: name of person to greet.
 
-    """
-        bar(x[, y])
-
-    Compute the Bar index between `x` and `y`.
-
-    If `y` is unspecified, compute the Bar index between all pairs of columns of `x`.
-
+    Returns some Greetings.
+    
     # Examples
     ```julia-repl
-    julia> bar([1, 2], [1, 2])
-    1
+    julia> greet("you")
+    "Hello you to the world of Trust-Region Tests!"
     ```
+    """ 
+    greet(s::String) =  print("Hello " * s *  " to the world of Trust-Region Tests!")
+
     """
-    function bar(x,y)
-        return x + y
-    end
-
-    @doc raw"""
-    Here's some inline maths: ``\sqrt[n]{1 + x + x^2 + \ldots}``.
-
-    Here's an equation:
-
-    ``\frac{n!}{k!(n - k)!} = \binom{n}{k}``
-
-    This is the binomial coefficient.
+    greet()
+    
+    Default Greetings!
     """
-    func(x) = 42 # ...
+    greet() = greet("you") 
+
+    @doc raw"""Geometric mean
+
+    geometricMean(x::Array)
+
+    Returns: ``\sqrt[n]{x_1\times x_2 \times \ldots \times x_n}``.
+    """
+   function  geometricMean(x::Array)
+        n = size(x, 1)
+        s = 1.0
+        for i in 1:n
+            s *= x[i]
+        end
+        return s^(1/n)
+   end 
+
+    abstract type AbstractOptimizer end 
+
+    # Deterministic
+    # include("Deterministic/main.jl")
 
 end # module TrustRegionTests

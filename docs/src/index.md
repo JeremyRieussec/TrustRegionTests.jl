@@ -8,10 +8,7 @@ CurrentModule = TrustRegionTests
 
 ```@docs
 greet
-domath(x::Real)
-foo(arg::Int)
-bar(x,y)
-func(x)
+geometricMean(x::Array)
 ```
 
 # Displaying

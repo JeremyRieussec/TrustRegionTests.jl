@@ -1,6 +1,8 @@
 using NLPModels
 using LinearAlgebra
+
 const NLPM = NLPModels
+
 struct TMPModel{T} <: AbstractNLPModel{T, Vector{T}}
     A::Matrix{T}
     b::Vector{T}

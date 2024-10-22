@@ -37,13 +37,13 @@ end
 
 function initialize!(sgd::AbstractFirstOrder, state::AbstractState, mo::AbstractNLPModel; verbose::Bool = false)
 verbose && println("initialize, generic sgd method")
-ENLPModels.grad!(mo, state.x, state.g)
-state.fx = ENLPModels.obj(mo, state.x)
+NLPModels.grad!(mo, state.x, state.g)
+state.fx = NLPModels.obj(mo, state.x)
 end
 
 function computeiteration!(sgd::AbstractFirstOrder, state::AbstractState, mo::AbstractNLPModel; verbose::Bool = false)
 println("computing iteration, generic sgd methode")
-ENLPModels.grad!(mo, state.x, state.g)
-state.fx = ENLPModels.obj(mo, state.x)
+NLPModels.grad!(mo, state.x, state.g)
+state.fx = NLPModels.obj(mo, state.x)
 state.x[:] -= 0.001*state.g
 end
